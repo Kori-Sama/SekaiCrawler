@@ -17,10 +17,7 @@ async def fetch_image_url(url):
     # chrome_options.add_argument("--proxy-server=http://127.0.0.1:7890")
 
     # 使用本地 ChromeDriver
-    driver = webdriver.Chrome(
-        service=Service("./chromedriver-win64/chromedriver.exe"),
-        options=chrome_options,
-    )
+    driver = webdriver.Chrome(service=Service(), options=chrome_options)
 
     try:
         # 访问页面
@@ -114,7 +111,7 @@ async def download_worker(queue: Queue, client: httpx.AsyncClient):
             os.makedirs(character_dir, exist_ok=True)
 
             # 根据stars分目录
-            stars_dir = os.path.join(character_dir, stars)
+            stars_dir = os.path.join(character_dir, f"{stars}星")
             os.makedirs(stars_dir, exist_ok=True)
 
             # 根据图片状态构建文件名
